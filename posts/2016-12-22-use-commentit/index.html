@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Lirian Su" />
+  <meta property="og:url" content="https://liriansu.com/posts/2016-12-22-use-commentit/" />
+  <link rel="canonical" href="https://liriansu.com/posts/2016-12-22-use-commentit/" /><script type="application/ld+json">
+  {
+      "@context" : "https://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liriansu.com\/"
+      },
+      "articleSection" : "posts",
+      "name" : "disqus不稳定，于是我开始用commentit了",
+      "headline" : "disqus不稳定，于是我开始用commentit了",
+      "description" : "\u003cp\u003e挂在GitHub Pages上的静态博客的评论总是个蛋疼的问题，\u003cbr\u003e\n我以前一直都是用\u003ca href=\u0022https:\/\/disqus.com\/\u0022\u003edisqus\u003c\/a\u003e的，\u003cbr\u003e\n但是它总是处于墙于被墙的边缘…\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "Lirian Su",
+      "creator" : "Lirian Su",
+      "publisher": "Lirian Su",
+      "accountablePerson" : "Lirian Su",
+      "copyrightHolder" : "Lirian Su",
+      "copyrightYear" : "2016",
+      "datePublished": "2016-12-22 20:20:07 \u002b0000 UTC",
+      "dateModified" : "2016-12-22 20:20:07 \u002b0000 UTC",
+      "url" : "https:\/\/liriansu.com\/posts\/2016-12-22-use-commentit\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>disqus不稳定，于是我开始用commentit了 - 浮云计算</title>
+  <meta property="og:title" content="disqus不稳定，于是我开始用commentit了 - 浮云计算" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="挂在GitHub Pages上的静态博客的评论总是个蛋疼的问题，
+我以前一直都是用disqus的，
+但是它总是处于墙于被墙的边缘…" />
+
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet"
+    href="/css/github-markdown.min.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="浮云计算">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
+
+  
+</head>
+
+
+<body>
+  <article class="post 中文" id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          <header>
+  <div class="signatures site-title">
+    <a href="/">Lirian Su</a>
+  </div>
+</header>
+<div class="row end-xs site-header-right">
+  
+  <div class="site-header-item">
+    <a href="/about" target="_blank">about</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="https://github.com/LKI" target="_blank">github</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="https://www.zhihu.com/people/liriansu" target="_blank">zhihu</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="/index.xml" target="_blank">rss</a>
+  </div>
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">disqus不稳定，于是我开始用commentit了</h1>
+          
+          <div class="row post-desc">
+            
+            <time class="post-header-item" datetime="2016-12-22 20:20:07 UTC">
+              Written at 2016-12-22 20:20
+            </time>
+            
+            <span class="post-header-item" id="busuanzi_container_page_pv"> Views <span id="busuanzi_value_page_pv" /> </span>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          <p>挂在GitHub Pages上的静态博客的评论总是个蛋疼的问题，<br>
+我以前一直都是用<a href="https://disqus.com/">disqus</a>的，<br>
+但是它总是处于墙于被墙的边缘…</p>
+<p><a href="/how-this-blog-was-built">因为<del>自己感觉没那个必要从头搭建博客服务器</del>懒，于是我直接采用了GitHub Pages。</a><br>
+但是由于GitHub Pages是静态页面，所以评论系统就成了问题。<br>
+于是研究了一番以后我用了<a href="https://disqus.com/">disqus</a>的第三方评论。</p>
+<p>disqus的便利之处在于构建简单，<br>
+我只要去注册一下，加一个<a href="https://github.com/LKI/lki.github.io/blob/b1c59b15a83fe0e0c9c2af55b15e1d3fa107c551/_includes/comments.html">comments.template</a>就可以自动展开成评论页面了。<br>
+但是出于种种原因<a href="https://disqus.com/">disqus</a>对墙内用户支持的不好。</p>
+<p>而且我又不想用<a href="https://duoshuo.com/">多说</a>，那个看起来无比蠢……</p>
+<p>直到我最近发现了一款黑科技：<a href="https://commentit.io/getting-started">Comm(ent|it)</a>。<br>
+一句话概括它静态评论的原理是：<code>所有的评论会变成Git Commit，push到你的Repository里面去</code>。</p>
+<p>雾草！<br>
+感觉很爽！</p>
+<p>而且其实<a href="https://github.com/LKI/lki.github.io/blob/eb8e55e54fafc4effeeed8ed24ddae142829372b/_includes/comments.html">它的template配置和disqus的一样简单</a>。<br>
+补充：我们还要在<a href="https://commentit.io/settings?master=true&amp;group=true">commentit的配置页面</a>配一下允许直接提交到master :)</p>
+<p>:) 所以是时候在本页面下面评论，<br>
+以成为<a href="https://github.com/LKI/lki.github.io/graphs/contributors">本博客GitHub项目的Contributor啦~</a></p>
+        </div>
+
+        
+          
+
+          
+          <div style="height: 20px;"></div>
+        
+
+        
+
+<div class="compatible">
+  <style scoped>
+.compatible {
+  margin: 0 auto;
+  max-width: 760px;
+  position: relative;
+}
+
+.compatible article {
+  align-items: flex-start;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-size: 14px;
+  margin: 16px 0;
+  padding: 0 4px;
+}
+
+.compatible .avatar {
+  background-color: transparent;
+  display: block;
+  margin-right: 16px;
+}
+
+.compatible img {
+  border-radius: 3px;
+  border-style: none;
+}
+
+.compatible .comment {
+  position: relative;
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 3px;
+}
+
+.compatible .comment-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: #586069;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 10px 16px;
+}
+
+.compatible strong {
+  color: #586069;
+}
+
+.compatible .comment-body {
+  padding: 0px 16px;
+  font-size: 14px;
+}
+  </style>
+  
+  <article>
+    <a class="avatar" href="https://github.com/scarqin" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/15225835?v=3&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/scarqin" target="_blank"><strong>scarqin</strong></a> (compatible) commented at 2017-03-30T06:58:09.693Z
+      </header>
+      <p class="comment-body">&#xFF01;try</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/yanhaijing" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/3192087?v=3&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/yanhaijing" target="_blank"><strong>yanhaijing</strong></a> (compatible) commented at 2017-04-08T13:19:48.855Z
+      </header>
+      <p class="comment-body">https://github.com/guilro/commentit/issues/9
+Error: could not commit the comment to github (repository or file not found)
+&#x4F60;&#x9047;&#x5230;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x4E86;&#x5417;&#xFF1F;</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/yanhaijing" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/3192087?v=3&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/yanhaijing" target="_blank"><strong>yanhaijing</strong></a> (compatible) commented at 2017-04-08T13:26:14.848Z
+      </header>
+      <p class="comment-body">test</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/xuyunbo" target="_blank">
+      <img height="44" width="44" src="https://avatars1.githubusercontent.com/u/3280537?v=3&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/xuyunbo" target="_blank"><strong>xuyunbo</strong></a> (compatible) commented at 2017-05-09T03:14:57.894Z
+      </header>
+      <p class="comment-body">NB NB NB</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/mliumeng" target="_blank">
+      <img height="44" width="44" src="https://avatars3.githubusercontent.com/u/14054737?v=3&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/mliumeng" target="_blank"><strong>mliumeng</strong></a> (compatible) commented at 2017-05-26T06:36:14.281Z
+      </header>
+      <p class="comment-body">&#x8FD9;&#x4E2A;&#x5389;&#x5BB3;</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/hifor" target="_blank">
+      <img height="44" width="44" src="https://avatars2.githubusercontent.com/u/12930071?v=3&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/hifor" target="_blank"><strong>hifor</strong></a> (compatible) commented at 2017-06-10T03:00:06.695Z
+      </header>
+      <p class="comment-body">test</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/jJayyyyyyy" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/8694379?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/jJayyyyyyy" target="_blank"><strong>jJayyyyyyy</strong></a> (compatible) commented at 2017-07-21T12:40:10.811Z
+      </header>
+      <p class="comment-body">&#x4F3C;&#x4E4E;&#x5E76;&#x4E0D;&#x80FD;&#x6210;&#x4E3A;contributor...&#x56E0;&#x4E3A;commit by &#x8FD8;&#x662F;&#x4F60;&#x7684;&#xFF0C;&#x4E0D;&#x8FC7;author&#x53D8;&#x6210;&#x4E86;&#x5403;&#x74DC;&#x7FA4;&#x4F17;&#xFF08;</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/cgstudios" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/22955150?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/cgstudios" target="_blank"><strong>cgstudios</strong></a> (compatible) commented at 2017-07-28T13:29:29.631Z
+      </header>
+      <p class="comment-body">dd</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/wendyltan" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/17764067?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/wendyltan" target="_blank"><strong>wendyltan</strong></a> (compatible) commented at 2017-10-15T13:35:22.005Z
+      </header>
+      <p class="comment-body">&#x54C8;&#x54C8;&#x54C8;</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/liminany" target="_blank">
+      <img height="44" width="44" src="https://avatars1.githubusercontent.com/u/4208263?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/liminany" target="_blank"><strong>liminany</strong></a> (compatible) commented at 2017-12-14T06:26:42.954Z
+      </header>
+      <p class="comment-body">test</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/liminany" target="_blank">
+      <img height="44" width="44" src="https://avatars1.githubusercontent.com/u/4208263?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/liminany" target="_blank"><strong>liminany</strong></a> (compatible) commented at 2017-12-14T07:10:34.473Z
+      </header>
+      <p class="comment-body">https://liminany.github.io/m/&#xFF0C;&#x6211;&#x7684;&#x8FD9;&#x4E2A;&#x52A0;&#x4E0A;&#x53BB;&#x4E0D;&#x884C;&#xFF0C;&#x62A5;  https://github.com/guilro/commentit/issues/9   &#x8FD9;&#x4E2A;&#x9519;&#xFF0C;could not commit the comment to github (repository or file not found) &#xFF0C;&#xFF0C;&#x600E;&#x4E48;&#x56DE;&#x4E8B;&#x5462;&#xFF1F;</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/ancongcong" target="_blank">
+      <img height="44" width="44" src="https://avatars3.githubusercontent.com/u/3014521?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/ancongcong" target="_blank"><strong>ancongcong</strong></a> (compatible) commented at 2017-12-26T17:02:17.248Z
+      </header>
+      <p class="comment-body">test</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/mlkey" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/2994534?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/mlkey" target="_blank"><strong>mlkey</strong></a> (compatible) commented at 2018-05-01T15:47:42.616Z
+      </header>
+      <p class="comment-body">666</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/jtianling" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/1190254?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/jtianling" target="_blank"><strong>jtianling</strong></a> (compatible) commented at 2018-09-29T07:05:17.018Z
+      </header>
+      <p class="comment-body">test</p>
+    </div>
+  </article>
+  
+</div>
+
+
+
+<div class="post-comments">
+  <script src="https://utteranc.es/client.js"
+          repo="LKI/lki.github.io"
+          issue-term="title"
+          label="comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+
+        
+
+<div class="site-footer">
+  <div class="site-footer-left">
+    <div class="site-footer-item">
+      <span id="busuanzi_container_site_pv" style="display:none"> PV: <span id="busuanzi_value_site_pv"/> </span>
+    </div>
+    <div class="site-footer-item">
+      <span id="busuanzi_container_site_uv" style="display:none"> UV: <span id="busuanzi_value_site_uv"/> </span>
+    </div>
+  </div>
+
+  <div class="site-footer-right">
+    
+    
+    <div class="site-footer-item">
+      <a href="/en/">English</a>
+    </div>
+    
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+</body>
+
+</html>

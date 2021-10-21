@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Lirian Su" />
+  <meta property="og:url" content="https://liriansu.com/posts/2021-10-21-whats-new-in-python-these-years/" />
+  <link rel="canonical" href="https://liriansu.com/posts/2021-10-21-whats-new-in-python-these-years/" /><script type="application/ld+json">
+  {
+      "@context" : "https://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liriansu.com\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Python 这几年都更新了啥",
+      "headline" : "Python 这几年都更新了啥",
+      "description" : "\u003cp\u003e最近我们终于全线升到了 py39\/go117,\u003cbr\u003e\n在大家对 go 新特性兴奋之余，\u003cbr\u003e\n@ackerr 提了一个很犀利的问题：\u003cbr\u003e\n“Python 新版本都更新了啥？”\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "Lirian Su",
+      "creator" : "Lirian Su",
+      "publisher": "Lirian Su",
+      "accountablePerson" : "Lirian Su",
+      "copyrightHolder" : "Lirian Su",
+      "copyrightYear" : "2021",
+      "datePublished": "2021-10-21 20:26:58 \u002b0800 CST",
+      "dateModified" : "2021-10-21 20:26:58 \u002b0800 CST",
+      "url" : "https:\/\/liriansu.com\/posts\/2021-10-21-whats-new-in-python-these-years\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Python 这几年都更新了啥 - 浮云计算</title>
+  <meta property="og:title" content="Python 这几年都更新了啥 - 浮云计算" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="最近我们终于全线升到了 py39/go117,
+在大家对 go 新特性兴奋之余，
+@ackerr 提了一个很犀利的问题：
+“Python 新版本都更新了啥？”" />
+
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet"
+    href="/css/github-markdown.min.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="浮云计算">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
+
+  
+</head>
+
+
+<body>
+  <article class="post 中文" id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          <header>
+  <div class="signatures site-title">
+    <a href="/">Lirian Su</a>
+  </div>
+</header>
+<div class="row end-xs site-header-right">
+  
+  <div class="site-header-item">
+    <a href="/about" target="_blank">about</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="https://github.com/LKI" target="_blank">github</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="https://www.zhihu.com/people/liriansu" target="_blank">zhihu</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="/index.xml" target="_blank">rss</a>
+  </div>
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Python 这几年都更新了啥</h1>
+          
+          <div class="row post-desc">
+            
+            <time class="post-header-item" datetime="2021-10-21 20:26:58 CST">
+              Written at 2021-10-21 20:26
+            </time>
+            
+            <span class="post-header-item" id="busuanzi_container_page_pv"> Views <span id="busuanzi_value_page_pv" /> </span>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          <p>最近我们终于全线升到了 py39/go117,<br>
+在大家对 go 新特性兴奋之余，<br>
+@ackerr 提了一个很犀利的问题：<br>
+“Python 新版本都更新了啥？”</p>
+<p>确实，<br>
+除了 f-strings/dataclasses 这种大家可能熟知的功能，<br>
+新的版本究竟更新了什么呢？</p>
+<p>以前 dota 一个小版本的 changelog 都能读的津津有味的我，<br>
+今天决定咀嚼一遍从 py36 至 py310 的更新日志 <del>（HOHO</del></p>
+<blockquote>
+<p>以下代码片段都可以在最新的 Python 3.10.0 Repl 中执行。</p>
+</blockquote>
+<h1 id="whats-new-in-python-36py36"><a href="https://docs.python.org/3/whatsnew/3.6.html">What&rsquo;s new in Python 3.6</a></h1>
+<p>Python 3.6 是在 2016-12-23 发布的，官方维护至 2021-12-23。<br>
+感知比较大的几个改动包括：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#75715e"># 字符串拼接中，支持使用 f-strings 的 inline 拼接方法</span>
+<span style="color:#75715e"># 终于能像 JS 那样方便地进行字符串拼接了</span>
+name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ackerr&#34;</span>
+precision <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+height <span style="color:#f92672">=</span> <span style="color:#ae81ff">183.2</span>
+<span style="color:#66d9ef">assert</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74"> is </span><span style="color:#e6db74">{</span>height<span style="color:#e6db74">:</span><span style="color:#e6db74">0.</span><span style="color:#e6db74">{</span>precision<span style="color:#e6db74">}</span><span style="color:#e6db74">f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">cm tall.&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;ackerr is 183.20cm tall.&#34;</span>
+
+<span style="color:#75715e"># 常数定义中，可以使用下划线增加可阅读性</span>
+number <span style="color:#f92672">=</span> <span style="color:#ae81ff">3_735_928_559</span>
+magic <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xDEAD_BEEF</span>
+<span style="color:#66d9ef">assert</span> number <span style="color:#f92672">==</span> magic
+
+<span style="color:#75715e"># 变量定义中，支持类型声明了</span>
+<span style="color:#75715e"># 值得注意的是 Python 依旧不是强类型，只是写在了 __annotations__ 这个变量里</span>
+<span style="color:#f92672">import</span> typing
+numbers: typing<span style="color:#f92672">.</span>List[int] <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">4</span>]
+complex_data: typing<span style="color:#f92672">.</span>Dict[int, typing<span style="color:#f92672">.</span>Set[int]] <span style="color:#f92672">=</span> {}
+<span style="color:#66d9ef">assert</span> <span style="color:#e6db74">&#34;complex_data&#34;</span> <span style="color:#f92672">in</span> __annotations__
+
+<span style="color:#75715e"># 加了一个 enum.auto 的函数，开发者不用费心去自增了</span>
+<span style="color:#f92672">import</span> enum
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Colors</span>(enum<span style="color:#f92672">.</span>Enum):
+    R <span style="color:#f92672">=</span> enum<span style="color:#f92672">.</span>auto()
+    G <span style="color:#f92672">=</span> enum<span style="color:#f92672">.</span>auto()
+    B <span style="color:#f92672">=</span> enum<span style="color:#f92672">.</span>auto()
+
+<span style="color:#66d9ef">assert</span> Colors<span style="color:#f92672">.</span>B<span style="color:#f92672">.</span>value <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span>
+</code></pre></div><p>其它的一句话更新包括：</p>
+<ul>
+<li>Windows 上默认编码都设定为 <code>utf-8</code>.</li>
+<li>修改了 dict 的实现，使其内存占用量比 py35 下降了 25%.</li>
+<li>标准包 <code>asyncio</code> 更新了一大串功能，使其变得能用了.</li>
+</ul>
+<h1 id="whats-new-in-python-37py37"><a href="https://docs.python.org/3/whatsnew/3.7.html">What&rsquo;s new in Python 3.7</a></h1>
+<p>Python 3.7 是在 2018-06-27 发布的，官方维护至 2023-06-27。<br>
+感知比较大的几个改动包括：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#75715e"># 类型系统支持惰性求值了，可以不需要用字符串来指代自己了</span>
+<span style="color:#f92672">from</span> __future__ <span style="color:#f92672">import</span> annotations
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QuerySet</span>:
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">filter</span>(self, <span style="color:#f92672">**</span>params) <span style="color:#f92672">-&gt;</span> QuerySet:
+        <span style="color:#e6db74">&#34;&#34;&#34;some database filter&#34;&#34;&#34;</span>
+
+
+<span style="color:#75715e"># 新增了 dataclass 标准包</span>
+<span style="color:#75715e"># 相比于 dict 传参大大优化了可读性</span>
+<span style="color:#f92672">import</span> dataclasses <span style="color:#66d9ef">as</span> dc
+<span style="color:#a6e22e">@dc</span><span style="color:#f92672">.</span>dataclass
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>:
+    name: str
+    age: int
+    gender: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Unknown&#39;</span>
+
+<span style="color:#66d9ef">assert</span> Person(<span style="color:#e6db74">&#39;me&#39;</span>, <span style="color:#e6db74">&#39;24&#39;</span>)<span style="color:#f92672">.</span>gender <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;Unknown&#39;</span>
+</code></pre></div><p>其它的一句话更新包括：</p>
+<ul>
+<li><code>async</code>/<code>await</code> 现在是保留关键字了.</li>
+<li>新增了 <code>breakpoint()</code> 系统函数用于调试.</li>
+<li>可以通过定义包的 <code>__getattr__()</code> 来控制包变量的访问行为.</li>
+<li>标准包 <code>time</code> 支持了纳秒级的精度.</li>
+<li>标准包 <code>asyncio</code> 更新了一大串功能，使其变得好用了.</li>
+</ul>
+<h1 id="whats-new-in-python-38py38"><a href="https://docs.python.org/3/whatsnew/3.8.html">What&rsquo;s new in Python 3.8</a></h1>
+<p>Python 3.8 是在 2019-10-14 发布的，官方维护至 2024-10-14。<br>
+感知比较大的几个改动包括：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#75715e"># 新增了赋值判断的语法（也被形象地叫做海象操作符）</span>
+<span style="color:#f92672">import</span> re
+<span style="color:#66d9ef">if</span> match <span style="color:#f92672">:=</span> re<span style="color:#f92672">.</span>search(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;(\d+)%&#34;</span>, <span style="color:#e6db74">&#34;Total coverage: 80%&#34;</span>):
+    print(<span style="color:#e6db74">&#34;Coverage is {match.group(1)}&#34;</span>)
+
+<span style="color:#75715e"># 函数支持用 `/` 限制非命名参数</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate_data_length</span>(data, <span style="color:#f92672">/</span>):
+    <span style="color:#66d9ef">pass</span>
+
+<span style="color:#75715e"># 官方指出，这种情况 `calculate_data_length(data=data)` 的可读性显然更低，其实可以在定义函数时禁掉</span>
+<span style="color:#75715e"># 而且该语法可以避免 `**kwargs` 传参冲突的情况</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_values</span>(data, <span style="color:#f92672">/</span>, <span style="color:#f92672">**</span>kwargs):
+    print(data, kwargs)
+
+get_values({}, data<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;some_data&#39;</span>)
+
+<span style="color:#75715e"># f-strings 支持了自解释的语法</span>
+name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ackerr&#34;</span>
+<span style="color:#66d9ef">assert</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Debug: </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">=}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Debug: name=&#39;ackerr&#39;&#34;</span>
+
+<span style="color:#75715e"># 新增了 `functools.cached_property` 方法，支持属性的缓存</span>
+<span style="color:#f92672">import</span> functools
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DB</span>:
+    <span style="color:#a6e22e">@functools</span><span style="color:#f92672">.</span>cached_property
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">connection</span>(self):
+        print(<span style="color:#ae81ff">1</span>)
+
+db <span style="color:#f92672">=</span> DB()
+<span style="color:#66d9ef">assert</span> db<span style="color:#f92672">.</span>connection <span style="color:#f92672">==</span> <span style="color:#66d9ef">None</span>
+<span style="color:#66d9ef">assert</span> db<span style="color:#f92672">.</span>connection <span style="color:#f92672">==</span> <span style="color:#66d9ef">None</span>
+</code></pre></div><p>其它的一句话更新包括：</p>
+<ul>
+<li><code>finally</code> 语句中不允许使用 <code>continue</code> 了.</li>
+<li>新增了计算欧几里得距离的方法 <code>math.dist()</code>.</li>
+<li>新增了支持混合l类型的 <code>typing.TypedDict</code>.</li>
+<li>标准包 <code>asyncio</code> 更新了一大串功能，使其变得稳定了.</li>
+<li>官方给出的 benchmark 中，相比于 py37 总体性能提升了 5%~20%.</li>
+</ul>
+<h1 id="whats-new-in-python-39py39"><a href="https://docs.python.org/3/whatsnew/3.9.html">What&rsquo;s new in Python 3.9</a></h1>
+<p>Python 3.9 是在 2020-10-05 发布的，官方维护至 2025-10-05。<br>
+感知比较大的几个改动包括：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#75715e"># dict 支持并集操作符 `|` 了</span>
+x <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;a&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;b&#34;</span>: <span style="color:#ae81ff">2</span>}
+y <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;b&#34;</span>: <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;c&#34;</span>: <span style="color:#ae81ff">4</span>}
+<span style="color:#66d9ef">assert</span> x <span style="color:#f92672">|</span> y <span style="color:#f92672">==</span> {<span style="color:#e6db74">&#34;a&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;b&#34;</span>: <span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#34;c&#34;</span>: <span style="color:#ae81ff">4</span>}
+<span style="color:#66d9ef">assert</span> y <span style="color:#f92672">|</span> x <span style="color:#f92672">==</span> {<span style="color:#e6db74">&#34;a&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;b&#34;</span>: <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;c&#34;</span>: <span style="color:#ae81ff">4</span>}
+
+<span style="color:#75715e"># 支持 `list`/`dict`/`set` 这样的原生类型作为类型标注</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">occurance</span>(names: list[str]) <span style="color:#f92672">-&gt;</span> dict[str, int]:
+    <span style="color:#66d9ef">return</span> {name: names<span style="color:#f92672">.</span>count(name) <span style="color:#66d9ef">for</span> name <span style="color:#f92672">in</span> names}
+</code></pre></div><p>其它的一句话更新包括：</p>
+<ul>
+<li>编译器由基于LL, 改为了基于PEG, 以便日后提供更强大的语言特性.</li>
+<li>新增了 <code>str.removeprefix()</code>/<code>str.removesuffix()</code> 方法.</li>
+<li><code>hashlib</code> 支持了 <code>SHA3</code>/<code>SHAKE</code> 的计算.</li>
+<li>非 Windows 平台不支持构建 <code>bdist_wininst</code> 了(所以很多第三方库没及时更新).</li>
+<li>官方给出的 benchmark 中，相比于 py37 总体性能并无提升.</li>
+</ul>
+<h1 id="whats-new-in-python-310py310"><a href="https://docs.python.org/3/whatsnew/3.10.html">What&rsquo;s new in Python 3.10</a></h1>
+<p>Python 3.10 是在 2021-10-04 发布的，官方维护至 2026-10-04。<br>
+感知比较大的几个改动包括：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python3" data-lang="python3"><span style="color:#75715e"># 新增了类似 switch+case 的 match+case 语法</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check</span>(status_code: int, message: str):
+    match status_code:
+        case <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">if</span> message:
+            <span style="color:#66d9ef">return</span> message
+        case <span style="color:#ae81ff">200</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;ok&#34;</span>
+        case <span style="color:#ae81ff">400</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;bad request&#34;</span>
+        case <span style="color:#ae81ff">500</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">502</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">503</span>:
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;something wrong&#34;</span>
+        case _:
+            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;not implemented&#34;</span>
+
+<span style="color:#75715e"># `typing.Union` 可以写成更优雅的 `|`</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_all</span>(<span style="color:#f92672">*</span>numbers: int <span style="color:#f92672">|</span> float) <span style="color:#f92672">-&gt;</span> int <span style="color:#f92672">|</span> float:
+    <span style="color:#66d9ef">return</span> sum(numbers)
+
+<span style="color:#66d9ef">assert</span> isinstance(<span style="color:#ae81ff">42</span>, int <span style="color:#f92672">|</span> float)
+
+<span style="color:#75715e"># `dataclass` 支持 keyword-only 模式</span>
+<span style="color:#f92672">import</span> dataclasses <span style="color:#66d9ef">as</span> dc
+<span style="color:#a6e22e">@dc</span><span style="color:#f92672">.</span>dataclass(kw_only<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span>:
+    name: str
+    age: int
+    gender: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Unknown&#39;</span>
+</code></pre></div><p>其它的一句话更新包括：</p>
+<ul>
+<li>优化了 Python 自带的各种报错信息.</li>
+<li>增加了 <code>zip(*args, strict=True)</code> 强制校验等长的参数.</li>
+<li>优化了 <code>str()</code>/<code>bytes()</code> 的性能，日常情况中快了 40%.</li>
+</ul>
+<h1 id="结语">结语</h1>
+<p>可以看到 Python 作为一个“步入成年的”编程语言，<br>
+这几年并没有 Golang 的泛型、错误处理那样令人 excited 的更新。<br>
+但总体的语言迭代也是基于 Python Zen 的小步快跑。</p>
+<p>对于开发者而言，只要第三方依赖允许，<br>
+保持最新的环境并不是一个很难的事情。</p>
+<p>笔者关心的功能只是语言标准的一个子集，<br>
+读者们也可以在官网上找到更详细、更实在的 changelog。</p>
+<p>下期（如果还有的话）可能会带来 go115-go117 的版本变更日志，<br>
+到时候再见 :)</p>
+<p>（完）</p>
+        </div>
+
+        
+          
+
+          
+          <div style="height: 20px;"></div>
+        
+
+        
+
+
+
+<div class="post-comments">
+  <script src="https://utteranc.es/client.js"
+          repo="LKI/lki.github.io"
+          issue-term="title"
+          label="comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+
+        
+
+<div class="site-footer">
+  <div class="site-footer-left">
+    <div class="site-footer-item">
+      <span id="busuanzi_container_site_pv" style="display:none"> PV: <span id="busuanzi_value_site_pv"/> </span>
+    </div>
+    <div class="site-footer-item">
+      <span id="busuanzi_container_site_uv" style="display:none"> UV: <span id="busuanzi_value_site_uv"/> </span>
+    </div>
+  </div>
+
+  <div class="site-footer-right">
+    
+    
+    <div class="site-footer-item">
+      <a href="/en/">English</a>
+    </div>
+    
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+</body>
+
+</html>

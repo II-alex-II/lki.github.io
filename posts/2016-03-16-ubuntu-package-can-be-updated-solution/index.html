@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Lirian Su" />
+  <meta property="og:url" content="https://liriansu.com/posts/2016-03-16-ubuntu-package-can-be-updated-solution/" />
+  <link rel="canonical" href="https://liriansu.com/posts/2016-03-16-ubuntu-package-can-be-updated-solution/" /><script type="application/ld+json">
+  {
+      "@context" : "https://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liriansu.com\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Ubuntu系统X packages can be updated的解决方案",
+      "headline" : "Ubuntu系统X packages can be updated的解决方案",
+      "description" : "\u003cp\u003e一个关于Ubuntu系统的小技巧。\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "Lirian Su",
+      "creator" : "Lirian Su",
+      "publisher": "Lirian Su",
+      "accountablePerson" : "Lirian Su",
+      "copyrightHolder" : "Lirian Su",
+      "copyrightYear" : "2016",
+      "datePublished": "2016-03-16 16:14:19 \u002b0000 UTC",
+      "dateModified" : "2016-03-16 16:14:19 \u002b0000 UTC",
+      "url" : "https:\/\/liriansu.com\/posts\/2016-03-16-ubuntu-package-can-be-updated-solution\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>Ubuntu系统X packages can be updated的解决方案 - 浮云计算</title>
+  <meta property="og:title" content="Ubuntu系统X packages can be updated的解决方案 - 浮云计算" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="一个关于Ubuntu系统的小技巧。" />
+
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet"
+    href="/css/github-markdown.min.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="浮云计算">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
+
+  
+</head>
+
+
+<body>
+  <article class="post 中文" id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          <header>
+  <div class="signatures site-title">
+    <a href="/">Lirian Su</a>
+  </div>
+</header>
+<div class="row end-xs site-header-right">
+  
+  <div class="site-header-item">
+    <a href="/about" target="_blank">about</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="https://github.com/LKI" target="_blank">github</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="https://www.zhihu.com/people/liriansu" target="_blank">zhihu</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="/index.xml" target="_blank">rss</a>
+  </div>
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">Ubuntu系统X packages can be updated的解决方案</h1>
+          
+          <div class="row post-desc">
+            
+            <time class="post-header-item" datetime="2016-03-16 16:14:19 UTC">
+              Written at 2016-03-16 16:14
+            </time>
+            
+            <span class="post-header-item" id="busuanzi_container_page_pv"> Views <span id="busuanzi_value_page_pv" /> </span>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          <p>一个关于Ubuntu系统的小技巧。</p>
+<h2 id="x-package-can-be-updated">x package can be updated</h2>
+<p>最近登录系统的时候，<br>
+系统老是提示</p>
+<pre tabindex="0"><code>    x packages can be updated.
+    y updates are security updates.
+</code></pre><p>噢，就像AppStore上面的小红点一样，<br>
+更新一下就好了，<br>
+于是敲下命令：</p>
+<pre tabindex="0"><code>    apt-get update
+    apt-get upgrade
+</code></pre><p>但是更新完以后，系统还是提示</p>
+<pre tabindex="0"><code>    x packages can be updated.
+    y updates are security updates.
+</code></pre><p><a href="https://ubuntuforums.org/showthread.php?t=1222909">在查阅了资料以后</a>才知道，<br>
+<code>update</code> + <code>upgrade</code>不能更新完所有的软件包，<br>
+还要跑一条命令：</p>
+<pre tabindex="0"><code>    apt-get dist-upgrade
+</code></pre><p>这个有一点点小烦人的提示就不见了。</p>
+<h2 id="motd">MOTD</h2>
+<p>ubuntu开机时显示的这个Message叫<br>
+<a href="https://en.wikipedia.org/wiki/Motd_(Unix)">MOTD(Message of the day)</a>，<br>
+很多公司会让系统管理员定制自己服务器的MOTD。</p>
+<p>Ubuntu系统里，MOTD的脚本默认放在<code>/etc/update-motd.d</code>下，<br>
+我们所看到的<code>x packages can be updated</code>就是由<br>
+<code>/etc/update-motd.d/90-updates-available</code>这个脚本提示的。</p>
+<p>所以我们想彻底去掉这个提示的话，<br>
+可以把<code>/etc/update-motd.d/90-updates-available</code>这个文件删掉（不推荐）。</p>
+<p>同理，我们也可以定制一下自己的MOTD。</p>
+<h2 id="总结">总结</h2>
+<ol>
+<li>
+<p>Ubuntu下更新全部包命令为<code>aptget update &amp;&amp; apt-get upgrade &amp;&amp; apt-get dist-upgrade</code>.</p>
+</li>
+<li>
+<p>系统一开始显示的Message叫<a href="https://en.wikipedia.org/wiki/Motd_(Unix)">MOTD</a>，默认放在<code>/etc/update-motd.d</code>下。</p>
+</li>
+</ol>
+        </div>
+
+        
+          
+
+          
+          <div style="height: 20px;"></div>
+        
+
+        
+
+<div class="compatible">
+  <style scoped>
+.compatible {
+  margin: 0 auto;
+  max-width: 760px;
+  position: relative;
+}
+
+.compatible article {
+  align-items: flex-start;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-size: 14px;
+  margin: 16px 0;
+  padding: 0 4px;
+}
+
+.compatible .avatar {
+  background-color: transparent;
+  display: block;
+  margin-right: 16px;
+}
+
+.compatible img {
+  border-radius: 3px;
+  border-style: none;
+}
+
+.compatible .comment {
+  position: relative;
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 3px;
+}
+
+.compatible .comment-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: #586069;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 10px 16px;
+}
+
+.compatible strong {
+  color: #586069;
+}
+
+.compatible .comment-body {
+  padding: 0px 16px;
+  font-size: 14px;
+}
+  </style>
+  
+  <article>
+    <a class="avatar" href="https://twitter.com/Triace210" target="_blank">
+      <img height="44" width="44" src="https://pbs.twimg.com/profile_images/715525829036355584/u__ldYW3_bigger.jpg">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://twitter.com/Triace210" target="_blank"><strong>Triace210</strong></a> (compatible) commented at 2017-03-02T06:18:24.370Z
+      </header>
+      <p class="comment-body">&#x5341;&#x5206;&#x611F;&#x8C22;</p>
+    </div>
+  </article>
+  
+</div>
+
+
+
+<div class="post-comments">
+  <script src="https://utteranc.es/client.js"
+          repo="LKI/lki.github.io"
+          issue-term="title"
+          label="comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+
+        
+
+<div class="site-footer">
+  <div class="site-footer-left">
+    <div class="site-footer-item">
+      <span id="busuanzi_container_site_pv" style="display:none"> PV: <span id="busuanzi_value_site_pv"/> </span>
+    </div>
+    <div class="site-footer-item">
+      <span id="busuanzi_container_site_uv" style="display:none"> UV: <span id="busuanzi_value_site_uv"/> </span>
+    </div>
+  </div>
+
+  <div class="site-footer-right">
+    
+    
+    <div class="site-footer-item">
+      <a href="/en/">English</a>
+    </div>
+    
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+</body>
+
+</html>

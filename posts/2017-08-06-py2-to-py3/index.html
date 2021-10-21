@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.88.1" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="Lirian Su" />
+  <meta property="og:url" content="https://liriansu.com/posts/2017-08-06-py2-to-py3/" />
+  <link rel="canonical" href="https://liriansu.com/posts/2017-08-06-py2-to-py3/" /><script type="application/ld+json">
+  {
+      "@context" : "https://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/liriansu.com\/"
+      },
+      "articleSection" : "posts",
+      "name" : "我们是怎么升级到Python3的",
+      "headline" : "我们是怎么升级到Python3的",
+      "description" : "\u003cp\u003e最近我们从Python2.7,\u003cbr\u003e\n全线升级到了Python3.5。\u003c\/p\u003e",
+      "inLanguage" : "en-US",
+      "author" : "Lirian Su",
+      "creator" : "Lirian Su",
+      "publisher": "Lirian Su",
+      "accountablePerson" : "Lirian Su",
+      "copyrightHolder" : "Lirian Su",
+      "copyrightYear" : "2017",
+      "datePublished": "2017-08-06 12:07:32 \u002b0000 UTC",
+      "dateModified" : "2017-08-06 12:07:32 \u002b0000 UTC",
+      "url" : "https:\/\/liriansu.com\/posts\/2017-08-06-py2-to-py3\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>我们是怎么升级到Python3的 - 浮云计算</title>
+  <meta property="og:title" content="我们是怎么升级到Python3的 - 浮云计算" />
+  <meta property="og:type" content="article" />
+  <meta name="description" content="最近我们从Python2.7,
+全线升级到了Python3.5。" />
+
+  <link rel="stylesheet" href="/css/flexboxgrid-6.3.1.min.css" />
+  <link rel="stylesheet"
+    href="/css/github-markdown.min.css" />
+  <link rel="stylesheet" href="/css/highlight/tomorrow.min.css" />
+  <link rel="stylesheet" href="/css/index.css">
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="浮云计算">
+  
+  <link href="https://fonts.googleapis.com/css?family=Arvo|Permanent+Marker" rel="stylesheet">
+  
+  
+
+  
+</head>
+
+
+<body>
+  <article class="post 中文" id="article">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="site-header">
+          <header>
+  <div class="signatures site-title">
+    <a href="/">Lirian Su</a>
+  </div>
+</header>
+<div class="row end-xs site-header-right">
+  
+  <div class="site-header-item">
+    <a href="/about" target="_blank">about</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="https://github.com/LKI" target="_blank">github</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="https://www.zhihu.com/people/liriansu" target="_blank">zhihu</a>
+  </div>
+  
+  <div class="site-header-item">
+    <a href="/index.xml" target="_blank">rss</a>
+  </div>
+  
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">我们是怎么升级到Python3的</h1>
+          
+          <div class="row post-desc">
+            
+            <time class="post-header-item" datetime="2017-08-06 12:07:32 UTC">
+              Written at 2017-08-06 12:07
+            </time>
+            
+            <span class="post-header-item" id="busuanzi_container_page_pv"> Views <span id="busuanzi_value_page_pv" /> </span>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          <p>最近我们从Python2.7,<br>
+全线升级到了Python3.5。</p>
+<h2 id="python2-和-python3-有啥区别啊">Python2 和 Python3 有啥区别啊？</h2>
+<p>在程序员的理想乡里，<br>
+程序语言理应只是个好用的工具。<br>
+然而在现实生活里，<br>
+程序语言甚至是程序语言的版本，<br>
+关系到工程的很多方面。<br>
+Python2和Python3就像是小黄车和摩拜一样，<br>
+在某几个大的特性上有区别，<br>
+但本质上都一样，<br>
+不过一些细微之处又有不同。</p>
+<p>比如说 Python2 最坑的 Unicode.<br>
+写过 Python2 的人总会遇到 <code>UnicodeDecodeError</code> 和 <code>UnicodeEncodeError</code> 这样的错。<br>
+在电话面试的时候，<br>
+我们回答候选人我们为什么会用 Python2,<br>
+也是把锅丢给谢老板：</p>
+<blockquote>
+<p>嗯是这样的，<br>
+我们第一行代码到整个初期框架都是 CEO 选的。<br>
+他是美国回来的，<br>
+所以不知道中国要用中文，<br>
+也会遇到 Unicode 相关的问题。<br>
+于是他没想太多，<br>
+就选了 Python2.7.</p>
+</blockquote>
+<p><em>真实原因还有很大一部分是因为当时一些库对 Python2 支持比较好</em></p>
+<p>除了 Unicode 的区别，<br>
+Python2 到 Python3 还有一些系统自带函数有变化。<br>
+比如 <code>urllib.urlencode -&gt; urllib.parse.urlencode</code>,<br>
+<code>StringIO.StringIO -&gt; io.BytesIO</code>。<br>
+一般项目里面可以用<a href="https://pypi.python.org/pypi/six">six</a>这个库来做兼容，<br>
+比如上面举的两个例子可以用<code>six.moves.urllib.parse.urlencode</code><br>
+和<code>six.BytesIO</code>来替换，<br>
+Django也自带了一个<a href="https://pypi.python.org/pypi/six">six</a>在<code>django.utils.six</code>.<br>
+不过我们是自己搭建环境，<br>
+所以其实不用考虑兼容性，<br>
+迁移工作大概的 Milestone 如下：</p>
+<h2 id="一些微小的工作">一些微小的工作</h2>
+<ol>
+<li>确保自己代码的兼容性。</li>
+<li>确保第三方库的兼容性。</li>
+<li>确保单元测试能过。</li>
+<li>确保测试环境、集成测试能过。</li>
+<li>正式环境切换 Python3！</li>
+<li>宣布辉煌结果！</li>
+</ol>
+<p>比如说讲些我们具体做的事情吧：</p>
+<p><a href="https://ldsink.com/">柳老板</a>很早就想把<del>谢老板的</del>Python2换了。<br>
+所以大概在16年底的时候，<br>
+我们都有这个心理预期。<br>
+因为我们都是 <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> 用户，<br>
+(<a href="https://www.jetbrains.com/pycharm/">JetBrains</a> 家巨好用的 <a href="%5Bhttps://en.wikipedia.org/wiki/Integrated_development_environment%5D">IDE</a>)<br>
+所以都打开了 Python Compatibility Inspection。<br>
+然后写代码的时候注意不使用<code>xrange()</code>, <code>dict.iteritems()</code>, <code>print </code>,<br>
+而用<code>range()</code>, <code>dict.items()</code>, <code>print()</code>来代替。<br>
+对于Unicode一类的问题，<br>
+我们使用了<code>__future__</code>这个功能，<br>
+确保每个文件的头都是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># -*- coding: utf-8 -*-</span>
+<span style="color:#f92672">from</span> __future__ <span style="color:#f92672">import</span> absolute_import, unicode_literals
+
+<span style="color:#75715e"># 第一行指定 encoding</span>
+<span style="color:#75715e"># 第二行 absolute_import 指定优先从绝对路径 import</span>
+<span style="color:#75715e">#   参见 PEP-0328: https://www.python.org/dev/peps/pep-0328</span>
+<span style="color:#75715e"># 第二行 unicode_literals 指定字符串默认使用 unicode 类型</span>
+<span style="color:#75715e">#   参见 PEP-3112: https://www.python.org/dev/peps/pep-3112</span>
+</code></pre></div><p>比如有个很蠢的<a href="https://docs.python.org/3/library/2to3.html">py2to3</a>的工具，<br>
+用它最好情况也只能把上面说到的“自己代码和系统依赖”给替换了。<br>
+具体的库替换、正确性验证还是得自己做。</p>
+<p>后来我们又大概过了一遍用到的第三方库（requirements.txt）。<br>
+最大的依赖 Django 本身是2/3都兼容的，<br>
+然后像 celery/redis/requests 这种兼容性也妥妥的。<br>
+之前我们用的 <a href="https://boto.cloudhackers.com/en/latest/">AWS Python SDK - boto</a> 不支持 Python3，<br>
+这个好说，对应的功能可以用<a href="https://boto3.readthedocs.io/en/latest/">boto3</a>来替换。</p>
+<p>比较麻烦的是当时用的微信库<a href="https://github.com/doraemonext/wechat-python-sdk">python-wechat-sdk</a>。<br>
+这个主要是我们用到了微信的很多功能：<br>
+消息回复、用户管理、模板/图文、各种素材等。<br>
+本身代码量就不小，<br>
+而且之前的代码写的还比较屎，<br>
+亟需重构。<br>
+于是我们花了几个月来重构代码+换库，<br>
+最终换成了更科学更好用的<a href="https://github.com/jxtech/wechatpy">wechatpy</a>。</p>
+<p>代码上的准备工作做完以后<br>
+（虽然这是轻巧的一句话，<br>
+但是因为实际开发中，<br>
+不可能空出一段时间专门用于架构升级。<br>
+所以我们都是在各种业务需求中找夹缝做的，<br>
+大概用了半年。）</p>
+<p>代码上的准备工作做完以后，<br>
+我们又用Python3跑了一下<a href="https://en.wikipedia.org/wiki/Unit_testing">单元测试(UT)</a>。<br>
+<strong>完善的自动测试，是平时的保障，是关键时刻的定心丸。</strong><br>
+理论上 Python2 到 Python3,<br>
+不应当有任何外部表现差异，<br>
+UT也不应当有错。<br>
+所以在修复了UT的错误以后，<br>
+我们就有信心切换 Python3 跑跑了。</p>
+<p>这里还有个小差别，<br>
+就是我们之前的服务器用的是 <code>Ubuntu 14 (Trusty)</code>，<br>
+Ubuntu14 上默认的 Python3 是 Python3.4。<br>
+最新的 Ubuntu 版本是 <code>Ubuntu 16 (Xenial)</code>，<br>
+上面默认的 Python3 是 Python3.5。<br>
+<a href="https://ldsink.com/">柳老板</a>也心水了 Ubuntu16 很久了，<br>
+于是这次切换 Python3,<br>
+我们也顺便把服务器版本升到了 Ubuntu16。<br>
+<del>不能print中文的feature也下掉了</del></p>
+<p>然后就是测试环境切换 Python3，<br>
+生产环境切换 Python3 了。<br>
+这里也有个小插曲，<br>
+生产环境切换 Python3 的时候，<br>
+我们原本想着先只<a href="https://en.wikipedia.org/wiki/A/B_testing">升级一部分Server（灰度）</a>，<br>
+但是 Celery 的 Python2 Producer抛出的任务，<br>
+Python3 Consumer能接，<br>
+但是百分百完不成…</p>
+<p>于是我们决定这还灰个蛋，不灰了！<br>
+找一天晚上点份奶茶和小龙虾，<br>
+全线切换Python3！<br>
+因为做好了前期准备，<br>
+所以我们大概只花了十分钟切换成了Python3~<br>
+腰也不酸了，<br>
+颈椎也不疼了，<br>
+连美餐的饭也好像变得美味了起来。<br>
+现在的<a href="https://www.kezaihui.com/#!/join">我司后台就是跑在Python3上的~</a></p>
+<p>最后还有就是大家的开发环境也切换一下 Python3 啦，<br>
+以前写的 docstring 可以切换成 <a href="https://docs.python.org/3/library/typing.html">type hintings</a> 啦之类的微小的工作了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Python 2 的时候这么写</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">old_hint</span>(messages, data<span style="color:#f92672">=</span>()):
+    <span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    :type messages: list
+</span><span style="color:#e6db74">    :type data: list[dict]
+</span><span style="color:#e6db74">    :rtype: str
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    <span style="color:#66d9ef">pass</span>
+
+
+<span style="color:#75715e"># Python 3 就可以这么写</span>
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">new_hint</span>(messages: list, data: list(dict) <span style="color:#f92672">=</span> ()) <span style="color:#f92672">-&gt;</span> str:
+    <span style="color:#66d9ef">pass</span>
+</code></pre></div><h2 id="总结">总结</h2>
+<p>从 Python 2 到 Python 3 的好处见仁见智，<br>
+对于不同的情况各有不同。<br>
+做成这么一件微小的事情，<br>
+感受比较深的就是：</p>
+<ul>
+<li>
+<p><strong>目标要清晰。</strong><br>
+比如我们早早地就把 Python 3 提到了我们的 Scrum Board 上。<br>
+除了技术很清楚我们要做什么，<br>
+产品也会有意识地给我们升级架构留下排期。<br>
+目标清晰，大家步伐就会一致。</p>
+</li>
+<li>
+<p><strong>要有推动者。</strong><br>
+比如<a href="https://ldsink.com/">柳老板</a>就充当了整件事情的推动者，<br>
+有序给大家分锅，具体哪个模块谁来重构，哪个库谁来换。<br>
+一些没人想干的麻烦/要背锅的事情他也都做了，<br>
+比如去修UT的兼容性之类的…</p>
+</li>
+<li>
+<p><strong>互相信任真好。</strong><br>
+后端升级架构，<br>
+其实各方面都会受影响，<br>
+比如上文提到的 Celery 那个坑就让我们紧急回退了版本，<br>
+或者类比一下游戏厂商每周例行的停服务器操作。<br>
+这时候产生的一些锅，<br>
+就被一线的队友背了，<br>
+他们也没多埋怨就帮我们擦屁股去了…<br>
+ORZ 感恩！</p>
+</li>
+</ul>
+<p>不论如何，<code>Python 3</code>毕竟是趋势，<br>
+<a href="https://www.djangoproject.com/weblog/2015/jun/25/roadmap/">Django的新版本不会支持Python 2</a>,<br>
+<a href="https://docs.celeryproject.org/en/latest/whatsnew-4.0.html#last-major-version-to-support-python-2">Celery的新版本也不会支持Python 2了</a>。<br>
+我们也不能落后呀。</p>
+<p>就像<a href="https://coolshell.cn/articles/17583.html">陈皓老师</a>常说的一样：</p>
+<blockquote>
+<p>技术债是还不完的，但我们也要一直还！</p>
+</blockquote>
+<p><del>陈皓老师：不，我没说过这句话，你自己编的。</del></p>
+        </div>
+
+        
+          
+
+          
+          <div style="height: 20px;"></div>
+        
+
+        
+
+<div class="compatible">
+  <style scoped>
+.compatible {
+  margin: 0 auto;
+  max-width: 760px;
+  position: relative;
+}
+
+.compatible article {
+  align-items: flex-start;
+  display: flex;
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-size: 14px;
+  margin: 16px 0;
+  padding: 0 4px;
+}
+
+.compatible .avatar {
+  background-color: transparent;
+  display: block;
+  margin-right: 16px;
+}
+
+.compatible img {
+  border-radius: 3px;
+  border-style: none;
+}
+
+.compatible .comment {
+  position: relative;
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 0;
+  border: 1px solid #e1e4e8;
+  border-radius: 3px;
+}
+
+.compatible .comment-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: #586069;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #e1e4e8;
+  padding: 10px 16px;
+}
+
+.compatible strong {
+  color: #586069;
+}
+
+.compatible .comment-body {
+  padding: 0px 16px;
+  font-size: 14px;
+}
+  </style>
+  
+  <article>
+    <a class="avatar" href="https://github.com/messense" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/1556054?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/messense" target="_blank"><strong>messense</strong></a> (compatible) commented at 2017-08-06T14:55:03.974Z
+      </header>
+      <p class="comment-body">&#x5E94;&#x8BE5;&#x5347;&#x7EA7;&#x5230; Python 3.6 &#x554A;... 3.6 &#x7684;&#x4E00;&#x4E9B;&#x4F18;&#x5316;&#x80FD;&#x7701;&#x4E0D;&#x5C11;&#x5185;&#x5B58;&#x3002;</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/LKI" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/3286092?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/LKI" target="_blank"><strong>LKI</strong></a> (compatible) commented at 2017-08-07T05:01:28.887Z
+      </header>
+      <p class="comment-body">@messense &#x55EF;&#x6709;&#x9053;&#x7406;&#x3002;&#x4E0D;&#x8FC7;3.5&#x5230;3.6&#x7684;gap&#xFF0C;&#x6BD4;2.7&#x5230;3.5&#x7684;gap&#x5C0F;&#x5F88;&#x591A;&#xFF0C;&#x8FD9;&#x4E2A;&#x597D;&#x5347;&#x3002;</p>
+    </div>
+  </article>
+  
+  <article>
+    <a class="avatar" href="https://github.com/fyrestone" target="_blank">
+      <img height="44" width="44" src="https://avatars0.githubusercontent.com/u/6308809?v=4&amp;s=73">
+    </a>
+    <div class="comment">
+      <header class="comment-header">
+        <a class="text-link" href="https://github.com/fyrestone" target="_blank"><strong>fyrestone</strong></a> (compatible) commented at 2017-10-26T11:20:48.877Z
+      </header>
+      <p class="comment-body">&#x55EF;&#xFF0C;3.6&#x7684;&#x4F18;&#x5316;&#x66F4;&#x591A;&#x4E9B;&#x3002;&#x3002;</p>
+    </div>
+  </article>
+  
+</div>
+
+
+
+<div class="post-comments">
+  <script src="https://utteranc.es/client.js"
+          repo="LKI/lki.github.io"
+          issue-term="title"
+          label="comment"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+
+        
+
+<div class="site-footer">
+  <div class="site-footer-left">
+    <div class="site-footer-item">
+      <span id="busuanzi_container_site_pv" style="display:none"> PV: <span id="busuanzi_value_site_pv"/> </span>
+    </div>
+    <div class="site-footer-item">
+      <span id="busuanzi_container_site_uv" style="display:none"> UV: <span id="busuanzi_value_site_uv"/> </span>
+    </div>
+  </div>
+
+  <div class="site-footer-right">
+    
+    
+    <div class="site-footer-item">
+      <a href="/en/">English</a>
+    </div>
+    
+    
+  </div>
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+</body>
+
+</html>
